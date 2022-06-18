@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 
 import collections
+import argparse
 
-_reps_per_day = 44
 _days_to_print = 7
 _reps_before_change = 100
 _exercises = ['Bicep curls', 'Shoulder press', 'French curls', 'Push ups', 'Sit ups', 'Pull ups']
@@ -54,7 +54,11 @@ def make_schedule(reps_per_day):
 
 
 if __name__ == '__main__':
+    parser = argparse.ArgumentParser()
+    parser.add_argument('reps', metavar='reps', type=int, nargs=1,
+                    help='reps per exercise per day')
+    args = parser.parse_args()
+    _reps_per_day = args.reps[0]
     for i in range(_reps_per_day, _reps_per_day + _days_to_print):
         make_schedule(i)
         print()
-
